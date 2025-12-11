@@ -1,7 +1,185 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f7;
+      color: #222;
+    }
+
+    /* Top stripe (can be replaced by a figure/image later) */
+    .top-stripe {
+      width: 100%;
+      height: 140px;
+      background: linear-gradient(135deg, #0f4473, #3a7bd5);
+    }
+
+    /* Name + job under the stripe */
+    .header-info {
+      padding: 1.5rem 2rem;
+      background-color: #ffffff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .header-info h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .header-info p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    /* Layout with sidebar + main content */
+    .page {
+      display: flex;
+      align-items: flex-start;
+      padding: 1.5rem 2rem;
+      gap: 2rem;
+    }
+
+    /* Left tab / sidebar */
+    .sidebar {
+      width: 200px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      padding: 1rem;
+    }
+
+    .sidebar h2 {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .nav-links {
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin-bottom: 0.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #0f4473;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Main content area */
+    .main-content {
+      flex: 1;
+      background-color: #ffffff;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      padding: 1.5rem;
+    }
+
+    .main-content section + section {
+      margin-top: 1.5rem;
+    }
+
+    #welcome h2,
+    #interests h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    #welcome p,
+    #interests p {
+      line-height: 1.5;
+    }
+
+    /* Responsive: stack sidebar below on small screens */
+    @media (max-width: 768px) {
+      .page {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        order: 2;
+      }
+
+      .main-content {
+        order: 1;
+      }
+    }
+  </style>
+</head>
 <body>
-<h1>José Devienne</h1>
-<p>Research Associate at the University of Cambridge</p>
+
+  <!-- 1. Stripe on top (replace with a figure/image later if you want) -->
+  <div class="top-stripe"></div>
+
+  <!-- Space for name and current job beneath -->
+  <header class="header-info">
+    <h1>Your Name Here</h1>
+    <p>Your current job title here (e.g., Research Associate, Software Developer, etc.)</p>
+  </header>
+
+  <div class="page">
+    <!-- 4. Left tab with links -->
+    <nav class="sidebar">
+      <h2>Links</h2>
+      <ul class="nav-links">
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://scholar.google.com/citations?user=YOURID" target="_blank" rel="noopener">Google Scholar</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main content: welcome + interests -->
+    <main class="main-content">
+      <!-- 2. Welcome phrase -->
+      <section id="welcome">
+        <h2>Welcome to my website</h2>
+        <p>
+          Thanks for visiting! This is a space where I share my work, interests, and projects.
+        </p>
+      </section>
+
+      <!-- 3. Space for presenting interests -->
+      <section id="interests">
+        <h2>My interests</h2>
+        <p>
+          <!-- Replace this with your own text -->
+          I am interested in [your areas of interest here, e.g., machine learning, rock magnetism, 
+          urban planning, data visualization, etc.].  
+          You can briefly describe what you work on and what excites you.
+        </p>
+      </section>
+
+      <!-- Optional: section for publications (linked from sidebar) -->
+      <section id="publications">
+        <h2>Publications</h2>
+        <p>
+          Here you can list some selected publications or link to a full list.
+        </p>
+        <!-- Example list:
+        <ul>
+          <li>Author, A., & Author, B. (2025). Title of the paper. Journal Name.</li>
+        </ul>
+        -->
+      </section>
+    </main>
+  </div>
 </body>
 </html>
