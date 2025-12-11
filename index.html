@@ -165,71 +165,7 @@
           urban planning, data visualization, etc.].  
           You can briefly describe what you work on and what excites you.
         </p>
-      </section>
-
-      <!-- Optional: section for publications (linked from sidebar) -->
-      <section id="publications">
-  <h2>Publications</h2>
-  <p>
-    This list is automatically generated from <code>publications.json</code>.
-  </p>
-  <ul id="pub-list">
-    <!-- Filled by JavaScript -->
-  </ul>
-</section>
-
-<script>
-  fetch('publications.json')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      const list = document.getElementById('pub-list');
-
-      if (!Array.isArray(data) || data.length === 0) {
-        list.innerHTML = '<li>No publications added yet.</li>';
-        return;
-      }
-
-      data.forEach(pub => {
-        const li = document.createElement('li');
-
-        const title = pub.title || 'Untitled';
-        const authors = pub.authors || '';
-        const year = pub.year || '';
-        const venue = pub.venue || '';
-        const link = pub.link || '';
-
-        let text = '';
-        if (authors) text += authors + '. ';
-        text += `<strong>${title}</strong>`;
-        if (venue) text += `. <em>${venue}</em>`;
-        if (year) text += ` (${year})`;
-
-        li.innerHTML = text;
-
-        if (link) {
-          const a = document.createElement('a');
-          a.href = link;
-          a.target = '_blank';
-          a.rel = 'noopener';
-          a.textContent = ' [link]';
-          li.appendChild(a);
-        }
-
-        list.appendChild(li);
-      });
-    })
-    .catch(error => {
-      console.error('Error loading publications:', error);
-      const list = document.getElementById('pub-list');
-      list.innerHTML = '<li>Could not load publications.</li>';
-    });
-</script>
-
+      </section> 
     </main>
   </div>
 </body>
