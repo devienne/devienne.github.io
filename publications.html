@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Publications</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      background-color: #f5f5f7;
+    }
+
+    .header {
+      padding: 1.5rem 2rem;
+      background-color: #ffffff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .header h1 {
+      margin: 0 0 0.3rem 0;
+    }
+
+    .page {
+      display: flex;
+      padding: 1.5rem 2rem;
+      gap: 2rem;
+    }
+
+    .sidebar {
+      width: 200px;
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      height: fit-content;
+    }
+
+    .nav-links { list-style: none; padding-left: 0; }
+    .nav-links li { margin-bottom: 0.5rem; }
+    .nav-links a { color: #0f4473; text-decoration: none; }
+    .nav-links a:hover { text-decoration: underline; }
+
+    .content {
+      flex: 1;
+      background-color: #ffffff;
+      padding: 1.5rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+
+    #pub-list li {
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Publications</h1>
+    <p>Automatically generated from <code>publications.json</code></p>
+  </div>
+
+  <div class="page">
+
+    <!-- SAME SIDEBAR AS INDEX -->
+    <nav class="sidebar">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="https://github.com/yourusername" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/your-profile" target="_blank">LinkedIn</a></li>
+        <li><a href="https://scholar.google.com/citations?user=YOURID" target="_blank">Google Scholar</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <h2>Full Publication List</h2>
+      <ul id="pub-list">
+        <!-- Filled by JavaScript -->
+      </ul>
+    </main>
+
+  </div>
+
+  <script>
+    fetch('publications.json')
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById('pub-list');
+
+        data.forEach(pub => {
+          const li = document.createElement('li');
+
+          const title = pub.title || "Untitled";
+          const authors = pub.authors || "";
+          const year = pub.year || "";
+          const venue = pub.venue || "";
+          const link = pub.link || "";
+
+          let html = "";
+          if (authors) html += authors + ". ";
+          html += `<strong>${title}</strong>`;
+          if (venue) html += `. <em>${venue}</em>`;
+          if (year) html += ` (${year})`;
+
+          li.innerHTML = html;
+
+          if (link) {
+            const a = document.createElement('a');
+            a.href = link;
+            a.target = "_blank";
+            a.textContent = " [link]";
+            li.appendChild(a);
+          }
+
+          list.appendChild(li);
+        });
+      })
+      .catch(err => {
+        document.getElementById('pub-list').innerHTML = "<li>Could not load publications.</li>";
+      });
+  </script>
+
+</body>
+</html>
