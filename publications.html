@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Publications</title>
+  <title>José Devienne</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
@@ -37,10 +37,23 @@
       height: fit-content;
     }
 
-    .nav-links { list-style: none; padding-left: 0; }
-    .nav-links li { margin-bottom: 0.5rem; }
-    .nav-links a { color: #0f4473; text-decoration: none; }
-    .nav-links a:hover { text-decoration: underline; }
+    .nav-links {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .nav-links li {
+      margin-bottom: 0.5rem;
+    }
+
+    .nav-links a {
+      color: #0f4473;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
 
     .content {
       flex: 1;
@@ -48,6 +61,10 @@
       padding: 1.5rem;
       border: 1px solid #ddd;
       border-radius: 8px;
+    }
+
+    #pub-list {
+      padding-left: 1.2rem;
     }
 
     #pub-list li {
@@ -60,24 +77,23 @@
 
   <div class="header">
     <h1>Publications</h1>
-    <p>Automatically generated from <code>publications.json</code></p>
   </div>
 
   <div class="page">
 
-    <!-- SAME SIDEBAR AS INDEX -->
+    <!-- Sidebar -->
     <nav class="sidebar">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="publications.html">Publications</a></li>
-        <li><a href="https://github.com/yourusername" target="_blank">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/your-profile" target="_blank">LinkedIn</a></li>
-        <li><a href="https://scholar.google.com/citations?user=YOURID" target="_blank">Google Scholar</a></li>
+        <li><a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://scholar.google.com/citations?user=Jmeok9IAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a></li>
       </ul>
     </nav>
 
     <main class="content">
-      <h2>Full Publication List</h2>
+      <h2>List of Publications</h2>
       <ul id="pub-list">
         <!-- Filled by JavaScript -->
       </ul>
@@ -87,31 +103,64 @@
 
   <script>
     fetch('publications.json')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Network error');
+        }
+        return res.json();
+      })
       .then(data => {
         const list = document.getElementById('pub-list');
+
+        if (!Array.isArray(data) || data.length === 0) {
+          list.innerHTML = "<li>No publications found.</li>";
+          return;
+        }
+
+        // 1) Sort by year DESCENDING (latest first)
+        data.sort((a, b) => {
+          const ya = Number(a.year) || 0;
+          const yb = Number(b.year) || 0;
+          return yb - ya; // descending
+        });
 
         data.forEach(pub => {
           const li = document.createElement('li');
 
+          // Basic fields
+          let authors = pub.authors || "";
           const title = pub.title || "Untitled";
-          const authors = pub.authors || "";
           const year = pub.year || "";
           const venue = pub.venue || "";
           const link = pub.link || "";
 
+          // 2) Bold *your* name in authors
+          // Add/adjust patterns if you have other variants in your bibs
+          const namePatterns = [
+            /Devienne,\s*J\.?\s*A\.?\s*P\.?\s*M\.?/g,
+            /José\s+A\.?\s*P\.?\s*M\.?\s*Devienne/g,
+            /Jose\s+A\.?\s*P\.?\s*M\.?\s*Devienne/g
+          ];
+
+          namePatterns.forEach(pat => {
+            authors = authors.replace(pat, match => `<strong>${match}</strong>`);
+          });
+
+          // 3) Build HTML: authors. <strong>Title</strong>. <em>Venue</em> (Year)
           let html = "";
           if (authors) html += authors + ". ";
-          html += `<strong>${title}</strong>`;
-          if (venue) html += `. <em>${venue}</em>`;
+          html += `<strong>${title}</strong>`;      // title bold
+          if (venue) html += `. <em>${venue}</em>`; // journal NOT bold, only italic
           if (year) html += ` (${year})`;
 
           li.innerHTML = html;
 
+          // Optional [link]
           if (link) {
             const a = document.createElement('a');
             a.href = link;
             a.target = "_blank";
+            a.rel = "noopener";
             a.textContent = " [link]";
             li.appendChild(a);
           }
@@ -120,7 +169,9 @@
         });
       })
       .catch(err => {
-        document.getElementById('pub-list').innerHTML = "<li>Could not load publications.</li>";
+        console.error(err);
+        document.getElementById('pub-list').innerHTML =
+          "<li>Could not load publications.</li>";
       });
   </script>
 
