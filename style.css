@@ -1,0 +1,348 @@
+/* ============================================================
+   Fonts — same families as the reference site (avalantinas.com):
+   Space Grotesk for headings/body, IBM Plex Mono for labels/nav.
+   Loaded from Google Fonts instead of self-hosted woff2 files —
+   fewer moving parts for a small personal site.
+   ============================================================ */
+
+:root {
+  /* dark blue palette (reference site uses dark + warm orange;
+     we swap in a navy background + blue accent instead) */
+  --bg: #070b14;
+  --ink: #e8edf7;
+  --ink-soft: #c7d1e6;
+  --ink-mute: #93a1c2;
+  --ink-dim: #7482a3;
+  --ink-faint: #57628a;
+  --accent: #4f83f0;
+  --accent-soft: #b9d3ff;
+  --line: #182238;
+  --line-card: #1c2740;
+  --line-pill: #24304c;
+  --card: #0d1526;
+
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --sans: 'Space Grotesk', sans-serif;
+  --pad: clamp(20px, 5vw, 64px);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--accent); }
+a:hover { color: var(--accent-soft); }
+
+.wrap { width: 100%; max-width: 1100px; margin: 0 auto; }
+
+.label {
+  font-family: var(--mono);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  display: block;
+}
+
+/* ============================================================
+   Nav — brand pinned left, tabs pinned right (space-between)
+   ============================================================ */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px 20px;
+  flex-wrap: wrap;
+  padding: 24px var(--pad);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  font-family: var(--mono);
+  font-size: 18px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.brand:hover { color: var(--accent-soft); }
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.tabs a {
+  color: var(--ink-dim);
+  text-decoration: none;
+  padding: 10px 18px;
+  border: 1px solid var(--line-pill);
+  border-radius: 999px;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.tabs a:hover { color: var(--accent-soft); border-color: var(--accent); }
+.tabs a.active {
+  color: var(--bg);
+  background: var(--accent);
+  border-color: var(--accent);
+  font-weight: 500;
+}
+
+/* ============================================================
+   About / home page
+   ============================================================ */
+.about {
+  padding: 88px var(--pad);
+  display: grid;
+  grid-template-columns: 160px 1fr 320px;
+  gap: 56px;
+  align-items: start;
+}
+.about .label { padding-top: 8px; }
+.about .lede {
+  font-size: clamp(21px, 2.2vw, 28px);
+  line-height: 1.5;
+  font-weight: 400;
+  margin: 0 0 32px;
+  color: var(--ink-soft);
+}
+.about p + p { margin-top: 16px; }
+
+.history {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px 64px;
+  margin-top: 32px;
+}
+.hist-group { font-family: var(--mono); font-size: 13px; }
+.hist-group .k { color: var(--ink-dim); margin-bottom: 10px; }
+.hist-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.hist-list li { line-height: 1.6; }
+.hist-list .role { color: var(--ink); font-weight: 500; }
+.hist-list .sub { display: block; color: var(--ink-dim); }
+.hist-list .sub a { color: var(--accent); text-decoration: none; }
+.hist-list .sub a:hover { color: var(--accent-soft); }
+.about figure { margin: 0; }
+.about figure img {
+  width: 320px;
+  max-width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+}
+
+@media (max-width: 1023px) {
+  .about {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+  .about .label { padding-top: 0; }
+}
+
+/* ============================================================
+   Research page — approach panels
+   ============================================================ */
+.approach > .label { display: block; padding: 56px var(--pad) 0; }
+.approach h2 {
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  padding: 14px var(--pad) 40px;
+}
+.panels {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 var(--pad);
+}
+.panel {
+  position: relative;
+  height: 340px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--line-card);
+}
+.panel img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.panel .shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(7,11,20,0.15) 0%, rgba(7,11,20,0) 35%, rgba(7,11,20,0.92) 100%);
+}
+.panel .cap {
+  position: absolute;
+  left: clamp(20px, 2.5vw, 36px);
+  right: clamp(20px, 2.5vw, 36px);
+  bottom: 24px;
+}
+.panel .cap h3 { font-size: clamp(19px, 2.1vw, 24px); font-weight: 500; }
+.panel .cap p { font-size: 15px; line-height: 1.6; color: var(--ink-soft); margin-top: 8px; max-width: 60ch; }
+
+/* methods strip (placeholder techniques, in place of reference's "missions") */
+.methods {
+  display: grid;
+  grid-template-columns: 160px repeat(3, 1fr);
+  gap: 32px;
+  padding: 44px var(--pad);
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.methods div { font-family: var(--mono); font-size: 13px; line-height: 1.9; }
+.methods .sub { color: var(--ink-dim); }
+
+@media (max-width: 1023px) {
+  .methods { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 767px) {
+  .panel { height: 300px; }
+  .methods { grid-template-columns: 1fr; gap: 20px; }
+}
+
+/* ============================================================
+   Research page — selected publications cards
+   ============================================================ */
+.research { padding: 64px var(--pad) 88px; }
+.research .label { display: block; margin-bottom: 36px; }
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.card {
+  text-decoration: none;
+  color: inherit;
+  background: var(--card);
+  border: 1px solid var(--line-card);
+  border-radius: 10px;
+  padding: 32px;
+  display: block;
+  transition: border-color 0.15s;
+}
+.card:hover { border-color: var(--accent); color: inherit; }
+.card .meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+}
+.card .meta .src { color: var(--ink-dim); }
+.card .meta .arrow { color: var(--accent); }
+.card .title { font-size: clamp(18px, 1.8vw, 21px); line-height: 1.35; font-weight: 500; }
+
+.card.all {
+  background: transparent;
+  border-style: dashed;
+  border-color: var(--line-pill);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.card.all:hover { border-color: var(--accent); }
+.card.all .t { font-size: 21px; font-weight: 500; color: var(--ink-soft); }
+.card.all .s { font-family: var(--mono); font-size: 13px; color: var(--accent); }
+
+@media (max-width: 767px) {
+  .cards { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   CV page
+   ============================================================ */
+.cvpage { padding: 64px var(--pad) 96px; }
+.cvpage .label { display: block; margin-bottom: 28px; }
+.cvpage .btn-row { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 36px; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 13.5px;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 15px 28px;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.btn.solid {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: var(--bg);
+  font-weight: 500;
+}
+.btn.solid:hover { background: var(--accent-soft); border-color: var(--accent-soft); color: var(--bg); }
+.cv-embed { width: 100%; height: 84vh; border: 1px solid var(--line-card); border-radius: 10px; }
+.cv-fallback { font-size: 16px; color: var(--ink-mute); padding: 24px; }
+
+/* ============================================================
+   Contact page
+   ============================================================ */
+.contact { padding: 80px var(--pad); }
+.contact .label { display: block; margin-bottom: 24px; }
+.email-link {
+  display: inline-block;
+  font-size: clamp(20px, 3vw, 30px);
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.email-link:hover { color: var(--accent-soft); }
+
+.pills { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--line-pill);
+  border-radius: 999px;
+  padding: 14px 26px;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
+}
+.pill:hover { border-color: var(--accent); color: var(--accent-soft); }
+
+/* ============================================================
+   Footer
+   ============================================================ */
+footer {
+  padding: 36px var(--pad);
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px 32px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--ink-faint);
+}
+footer .foot-links { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+footer a { color: var(--ink-dim); text-decoration: none; }
+footer a:hover { color: var(--accent-soft); }
+
+@media (max-width: 767px) {
+  nav { justify-content: center; text-align: center; }
+  .tabs { justify-content: center; }
+  .tabs a { padding: 8px 14px; }
+  footer { justify-content: center; text-align: center; }
+}
