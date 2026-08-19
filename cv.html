@@ -4,41 +4,53 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CV</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="wrap">
 
   <nav>
-    <a class="brand" href="index.html">J.DEVIENNE</a>
+    <a class="brand" href="index.html">J. Devienne</a>
     <div class="tabs">
-      <a href="index.html">ABOUT</a>
-      <a href="research.html">RESEARCH</a>
-      <a href="mlops.html">MLOPS</a>
+      <a href="about.html">About</a>
+      <a href="research.html">Research</a>
+      <a href="mlops.html">MLOps</a>
       <a class="active" href="cv.html">CV</a>
-      <a href="contact.html">CONTACT</a>
+      <a href="contact.html">Contact</a>
     </div>
   </nav>
 
   <section class="cvpage">
     <span class="label">CURRICULUM VITAE</span>
-    <div class="btn-row">
-      <a class="btn solid" href="assets/cv.pdf" target="_blank">DOWNLOAD CV (PDF) ↓</a>
+
+    <div class="cv-block">
+      <h2 class="cv-heading">Professional CV (non-academic)</h2>
+      <div class="btn-row">
+        <a class="btn solid" href="assets/cv2.pdf" target="_blank">DOWNLOAD CV (PDF) ↓</a>
+      </div>
+      <object data="assets/cv2.pdf" type="application/pdf" class="cv-embed">
+        <p class="cv-fallback">Your browser can't display the PDF here — use the download button above.</p>
+      </object>
     </div>
-    <!-- Add your real CV as assets/cv.pdf — until then this embed will 404 -->
-    <object data="assets/cv.pdf" type="application/pdf" class="cv-embed">
-      <p class="cv-fallback">Your browser can't display the PDF here — use the download button above.</p>
-    </object>
+
+    <div class="cv-block">
+      <h2 class="cv-heading">Academic CV</h2>
+      <div class="btn-row">
+        <a class="btn solid" href="assets/cv.pdf" target="_blank">DOWNLOAD CV (PDF) ↓</a>
+      </div>
+      <object data="assets/cv.pdf" type="application/pdf" class="cv-embed">
+        <p class="cv-fallback">Your browser can't display the PDF here — use the download button above.</p>
+      </object>
+    </div>
   </section>
 
   <footer>
-    <div>&copy; 2026 José Devienne</div>
+    <div>José Devienne</div>
     <div class="foot-links">
-      <a href="assets/cv.pdf" target="_blank">CV (PDF)</a>
-      <a href="https://scholar.google.com/citations?user=Jmeok9IAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="about.html">About</a>
+      <a href="research.html">Research</a>
+      <a href="mlops.html">MLOps</a>
+      <a href="cv.html">CV</a>
       <a href="contact.html">Contact</a>
     </div>
   </footer>

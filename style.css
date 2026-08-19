@@ -1,13 +1,12 @@
 /* ============================================================
-   Fonts — same families as the reference site (avalantinas.com):
-   Space Grotesk for headings/body, IBM Plex Mono for labels/nav.
-   Loaded from Google Fonts instead of self-hosted woff2 files —
-   fewer moving parts for a small personal site.
+   Fonts — Arial everywhere (both the --mono and --sans slots point
+   at the same stack now, so labels/nav and headings/body all render
+   in Arial; the two variable names are kept so the rest of the
+   stylesheet doesn't need to change).
    ============================================================ */
 
 :root {
-  /* dark blue palette (reference site uses dark + warm orange;
-     we swap in a navy background + blue accent instead) */
+  /* dark blue palette */
   --bg: #070b14;
   --ink: #e8edf7;
   --ink-soft: #c7d1e6;
@@ -21,8 +20,8 @@
   --line-pill: #24304c;
   --card: #0d1526;
 
-  --mono: 'IBM Plex Mono', ui-monospace, monospace;
-  --sans: 'Space Grotesk', sans-serif;
+  --mono: Arial, Helvetica, sans-serif;
+  --sans: Arial, Helvetica, sans-serif;
   --pad: clamp(20px, 5vw, 64px);
 }
 
@@ -99,19 +98,74 @@ nav {
 .about {
   padding: 88px var(--pad);
   display: grid;
-  grid-template-columns: 160px 1fr 320px;
+  grid-template-columns: 280px 1fr;
   gap: 56px;
   align-items: start;
 }
-.about .label { padding-top: 8px; }
 .about .lede {
-  font-size: clamp(21px, 2.2vw, 28px);
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.6;
   font-weight: 400;
-  margin: 0 0 32px;
+  margin: 0 0 40px;
   color: var(--ink-soft);
 }
-.about p + p { margin-top: 16px; }
+.about .label { margin-bottom: 20px; }
+
+/* Inline links inside intro-style paragraphs read as plain text —
+   no color change, no underline — but stay clickable. */
+.lede a { color: inherit; text-decoration: none; }
+.lede a:hover { color: inherit; }
+
+/* "What's going on" — clickable dated updates, each opening the
+   shared modal (same component the Research panels use). */
+.updates-list {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.update-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.update-item:hover, .update-item:focus-visible { color: var(--accent-soft); }
+.update-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.update-item .date {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+  margin-right: 8px;
+}
+
+/* "More" — opens a modal listing every update (the full archive);
+   each entry in that list is itself a .update-item, so clicking one
+   swaps the modal from the list view to that story's detail view. */
+.update-more {
+  display: block;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.update-more:hover, .update-more:focus-visible { color: var(--accent-soft); }
+.update-more:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
 .history {
   display: flex;
@@ -129,12 +183,79 @@ nav {
 .hist-list .sub a:hover { color: var(--accent-soft); }
 .about figure { margin: 0; }
 .about figure img {
-  width: 320px;
-  max-width: 100%;
-  height: 400px;
+  width: 100%;
+  height: 360px;
   object-fit: cover;
   border-radius: 14px;
   display: block;
+}
+
+/* ============================================================
+   About page (bio + education) — two columns, no photo column
+   ============================================================ */
+.bio {
+  padding: 88px var(--pad);
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 56px;
+  align-items: start;
+}
+.bio .label { padding-top: 8px; }
+.bio .lede {
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+  margin: 0 0 32px;
+  color: var(--ink-soft);
+}
+.bio p + p { margin-top: 16px; }
+
+/* ============================================================
+   Timeline — sits between the bio text and the education list.
+   An SVG draws the curve/markers/stems (decorative); HTML buttons
+   are absolutely positioned over it to stay clickable/keyboard-
+   accessible. Positions are hand-tuned to the viewBox below, so if
+   the curve path changes, nudge the .timeline-point offsets too.
+   ============================================================ */
+.timeline {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  margin: 16px 0 48px;
+}
+.timeline-curve { position: absolute; inset: 0; width: 100%; height: 100%; }
+.timeline-curve .curve { fill: none; stroke: var(--line-pill); stroke-width: 2; }
+.timeline-curve .stem { stroke: var(--line-pill); stroke-width: 1.5; stroke-dasharray: 3 4; }
+.timeline-curve .marker { fill: var(--accent); }
+.timeline-point {
+  position: absolute;
+  transform: translateX(-50%);
+  width: 170px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.timeline-point:hover, .timeline-point:focus-visible { color: var(--accent-soft); }
+.timeline-point:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.timeline-point-1 { left: 16.7%; top: 6px; }
+.timeline-point-2 { left: 50%; top: 180px; }
+.timeline-point-3 { left: 83.3%; top: 6px; }
+
+@media (max-width: 1023px) {
+  .bio {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+  .bio .label { padding-top: 0; }
 }
 
 @media (max-width: 1023px) {
@@ -144,7 +265,6 @@ nav {
     padding-top: 64px;
     padding-bottom: 64px;
   }
-  .about .label { padding-top: 0; }
 }
 
 /* ============================================================
@@ -170,7 +290,11 @@ nav {
   border-radius: 12px;
   background: var(--card);
   border: 1px solid var(--line-card);
+  cursor: pointer;
+  transition: border-color 0.15s;
 }
+.panel:hover, .panel:focus-visible { border-color: var(--accent); }
+.panel:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .panel img {
   position: absolute;
   inset: 0;
@@ -268,6 +392,13 @@ nav {
    ============================================================ */
 .cvpage { padding: 64px var(--pad) 96px; }
 .cvpage .label { display: block; margin-bottom: 28px; }
+.cv-block + .cv-block { margin-top: 72px; }
+.cv-heading {
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+}
 .cvpage .btn-row { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 36px; }
 .btn {
   display: inline-flex;
@@ -295,17 +426,20 @@ nav {
    ============================================================ */
 .contact { padding: 80px var(--pad); }
 .contact .label { display: block; margin-bottom: 24px; }
-.email-link {
-  display: inline-block;
-  font-size: clamp(20px, 3vw, 30px);
-  font-weight: 500;
-  color: var(--ink);
-  text-decoration: none;
-  overflow-wrap: anywhere;
-}
-.email-link:hover { color: var(--accent-soft); }
 
-.pills { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+/* Pill buttons — used on the Contact page and below the intro text
+   on the home page (Email / GitHub / LinkedIn / Google Scholar) */
+.pills-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+.pills { display: flex; flex-wrap: wrap; gap: 14px; }
+.pills-label + .pills { margin-top: 0; }
 .pill {
   display: inline-flex;
   align-items: center;
@@ -346,3 +480,114 @@ footer a:hover { color: var(--accent-soft); }
   .tabs a { padding: 8px 14px; }
   footer { justify-content: center; text-align: center; }
 }
+
+/* ============================================================
+   Modal — placeholder popup opened by clicking a panel.
+   Content is filled in by script.js from a matching <template>,
+   so the markup/text/figures can be swapped in later per panel.
+   ============================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 11, 20, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 100;
+}
+.modal-overlay[hidden] { display: none; }
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 1040px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--card);
+  border: 1px solid var(--line-card);
+  border-radius: 14px;
+  padding: 56px 48px 48px;
+}
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--line-pill);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.modal-close:hover { border-color: var(--accent); color: var(--accent-soft); }
+.modal-body h3 {
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 500;
+  margin-bottom: 18px;
+  padding-right: 40px;
+}
+.modal-body p { font-size: 16px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 14px; }
+.modal-figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.modal-figures img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--line-card);
+  cursor: zoom-in;
+  transition: border-color 0.15s;
+}
+.modal-figures img:hover { border-color: var(--accent); }
+
+/* ============================================================
+   Lightbox — click a figure inside the modal to view it larger.
+   Stacks above the modal (higher z-index); Escape/click-outside
+   closes just the lightbox, not the modal underneath.
+   ============================================================ */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 4, 9, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  z-index: 200;
+}
+.lightbox-overlay[hidden] { display: none; }
+.lightbox-overlay img {
+  max-width: 92vw;
+  max-height: 88vh;
+  border-radius: 10px;
+  border: 1px solid var(--line-card);
+}
+.lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--line-pill);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.lightbox-close:hover { border-color: var(--accent); color: var(--accent-soft); }

@@ -4,9 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>José Devienne</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,74 +11,139 @@
 
   <!-- Step 1: brand top-left (links home), tabs top-right -->
   <nav>
-    <a class="brand" href="index.html">J.DEVIENNE</a>
+    <a class="brand" href="index.html">J. Devienne</a>
     <div class="tabs">
-      <a class="active" href="index.html">ABOUT</a>
-      <a href="research.html">RESEARCH</a>
-      <a href="mlops.html">MLOPS</a>
+      <a href="about.html">About</a>
+      <a href="research.html">Research</a>
+      <a href="mlops.html">MLOps</a>
       <a href="cv.html">CV</a>
-      <a href="contact.html">CONTACT</a>
+      <a href="contact.html">Contact</a>
     </div>
   </nav>
 
-  <!-- Home = photo + intro text, no hero figure -->
+  <!-- Home = photo (left) + "What's going on" updates feed (right) -->
   <section class="about" id="about">
-    <div class="label">ABOUT</div>
-    <div>
-      <p class="lede">
-        Hi there! I'm José Devienne, a physicist and researcher with interests in geophysics, applied physics, and computational modeling.
-      </p>
-      <div class="history">
-        <div class="hist-group">
-          <div class="k">PROFESSIONAL EXPERIENCE</div>
-          <ul class="hist-list">
-            <li>
-              <div class="role">Research Associate</div>
-              <div class="sub"><a href="https://www.esc.cam.ac.uk/" target="_blank" rel="noopener">Department of Earth Sciences</a>, University of Cambridge</div>
-            </li>
-            <li>
-              <div class="role">PhD Researcher</div>
-              <div class="sub"><a href="https://sess2.pku.edu.cn/english/index.htm" target="_blank" rel="noopener">School of Earth and Space Sciences</a>, Peking University</div>
-            </li>
-            <li>
-              <div class="role">Visiting Researcher</div>
-              <div class="sub"><a href="https://geosciences.ed.ac.uk/" target="_blank" rel="noopener">School of GeoSciences</a>, University of Edinburgh</div>
-            </li>
-          </ul>
-        </div>
-        <div class="hist-group">
-          <div class="k">EDUCATION</div>
-          <ul class="hist-list">
-            <li>
-              <div class="role">MBA in ML Engineering</div>
-              <div class="sub"><a href="https://www.fiap.com.br/" target="_blank" rel="noopener">FIAP</a></div>
-            </li>
-            <li>
-              <div class="role">ML Academy</div>
-              <div class="sub"><a href="https://www.cambridgespark.com/" target="_blank" rel="noopener">Cambridge Spark</a></div>
-            </li>
-            <li>
-              <div class="role">PhD in Geophysics</div>
-              <div class="sub"><a href="https://sess2.pku.edu.cn/english/index.htm" target="_blank" rel="noopener">Peking University</a></div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
     <figure>
       <img src="assets/photo.jpg" alt="José Devienne">
     </figure>
+    <div>
+      <p class="lede">
+        Hi there! I'm José Devienne, a scientist at the <a href="https://www.esc.cam.ac.uk/" target="_blank" rel="noopener">Department of Earth Sciences</a>, <a href="https://www.cam.ac.uk/" target="_blank" rel="noopener">University of Cambridge</a>. In my research, I combine numerical modeling, HPC, machine learning, and experimental work to track magnetic records preserved in terrestrial rocks and meteorites. I then use this information to understand how planets formed and evolved, and how Earth's magnetic field may have influenced the origin of life. My recent interests include extending locally developed ML codes to larger-scale facilities (e.g., cloud computing), and exploring how such applications can be delivered efficiently through intuitive visual interfaces.
+      </p>
+
+      <div class="label">What's going on</div>
+
+      <!-- Each item is clickable — opens a modal populated from the matching
+           <template> below. Placeholder items/content for now; add more and
+           swap in real text/links/figures later. -->
+      <ul class="updates-list">
+        <li>
+          <button type="button" class="update-item" data-modal-target="modal-update-1">
+            <span class="date">19.08.2026</span>New paper is out on Arxiv! "Prebiotic magnetite enables chirality-magnetic surface feedback"
+          </button>
+        </li>
+        <li>
+          <button type="button" class="update-item" data-modal-target="modal-update-2">
+            <span class="date">05.07.2026</span>Attending the 19th Castle Meeting in Collonges-la-Rouge, France
+          </button>
+        </li>
+        <li>
+          <button type="button" class="update-item" data-modal-target="modal-update-3">
+            <span class="date">10.05.2025</span>Visiting the IRM in Minneapolis, USA
+          </button>
+        </li>
+      </ul>
+      <button type="button" class="update-more" data-modal-target="modal-all-updates">More</button>
+
+      <div class="pills-label">Get in touch</div>
+      <div class="pills">
+        <a class="pill" href="mailto:jd2108@cam.ac.uk">Email</a>
+        <a class="pill" href="https://github.com/devienne" target="_blank" rel="noopener">GitHub <span>↗</span></a>
+        <a class="pill" href="https://www.linkedin.com/in/jose-devienne-331602205/" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
+        <a class="pill" href="https://scholar.google.com/citations?user=Jmeok9IAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar <span>↗</span></a>
+      </div>
+    </div>
   </section>
 
   <footer>
-    <div>&copy; 2026 José Devienne</div>
+    <div>José Devienne</div>
     <div class="foot-links">
-      <a href="assets/cv.pdf" target="_blank">CV (PDF)</a>
-      <a href="https://scholar.google.com/citations?user=Jmeok9IAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="about.html">About</a>
+      <a href="research.html">Research</a>
+      <a href="mlops.html">MLOps</a>
+      <a href="cv.html">CV</a>
       <a href="contact.html">Contact</a>
     </div>
   </footer>
 
+  <!-- Modal content templates — one per update above, plus modal-all-updates
+       (the full archive shown by "More"). Body text/link/figure are still
+       placeholders — edit freely; the modal just clones whichever <template>
+       matches the clicked item's data-modal-target. -->
+  <template id="modal-update-1">
+    <h3>New paper is out on Arxiv! "Prebiotic magnetite enables chirality-magnetic surface feedback"</h3>
+    <p>Placeholder text — add a short summary of this update here.</p>
+    <p><a href="#" target="_blank" rel="noopener">Placeholder link ↗</a></p>
+    <div class="modal-figures">
+      <img src="assets/figure-update-placeholder.svg" alt="Placeholder figure">
+    </div>
+  </template>
+
+  <template id="modal-update-2">
+    <h3>Attending the 19th Castle Meeting in Collonges-la-Rouge, France</h3>
+    <p>Placeholder text — add a short summary of this update here.</p>
+    <p><a href="#" target="_blank" rel="noopener">Placeholder link ↗</a></p>
+    <div class="modal-figures">
+      <img src="assets/figure-update-placeholder.svg" alt="Placeholder figure">
+    </div>
+  </template>
+
+  <template id="modal-update-3">
+    <h3>Visiting the IRM in Minneapolis, USA</h3>
+    <p>Placeholder text — add a short summary of this update here.</p>
+    <p><a href="#" target="_blank" rel="noopener">Placeholder link ↗</a></p>
+    <div class="modal-figures">
+      <img src="assets/figure-update-placeholder.svg" alt="Placeholder figure">
+    </div>
+  </template>
+
+  <!-- "More" opens this: every update ever posted, each still clickable —
+       clicking one swaps this list for that story's own template above. -->
+  <template id="modal-all-updates">
+    <h3>All updates</h3>
+    <ul class="updates-list">
+      <li>
+        <button type="button" class="update-item" data-modal-target="modal-update-1">
+          <span class="date">19.08.2026</span>New paper is out on Arxiv! "Prebiotic magnetite enables chirality-magnetic surface feedback"
+        </button>
+      </li>
+      <li>
+        <button type="button" class="update-item" data-modal-target="modal-update-2">
+          <span class="date">05.07.2026</span>Attending the 19th Castle Meeting in Collonges-la-Rouge, France
+        </button>
+      </li>
+      <li>
+        <button type="button" class="update-item" data-modal-target="modal-update-3">
+          <span class="date">10.05.2025</span>Visiting the IRM in Minneapolis, USA
+        </button>
+      </li>
+    </ul>
+  </template>
+
+  <div class="modal-overlay" id="modal-overlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modal-close" type="button" aria-label="Close">&times;</button>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Lightbox: click any figure inside the modal to view it larger -->
+  <div class="lightbox-overlay" id="lightbox-overlay" hidden>
+    <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close">&times;</button>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
 </div>
+<script src="script.js"></script>
 </body>
 </html>

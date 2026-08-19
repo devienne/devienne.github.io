@@ -4,22 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Research — José Devienne</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="wrap">
 
   <nav>
-    <a class="brand" href="index.html">J.DEVIENNE</a>
+    <a class="brand" href="index.html">J. Devienne</a>
     <div class="tabs">
-      <a href="index.html">ABOUT</a>
-      <a class="active" href="research.html">RESEARCH</a>
-      <a href="mlops.html">MLOPS</a>
+      <a href="about.html">About</a>
+      <a class="active" href="research.html">Research</a>
+      <a href="mlops.html">MLOps</a>
       <a href="cv.html">CV</a>
-      <a href="contact.html">CONTACT</a>
+      <a href="contact.html">Contact</a>
     </div>
   </nav>
 
@@ -27,8 +24,10 @@
     <span class="label">APPROACH</span>
     <h2>From atomic magnetism to planetary history</h2>
 
+    <!-- Each panel is clickable — opens a modal populated from the matching
+         <template> below. Placeholder content for now; swap in real text/figures later. -->
     <div class="panels">
-      <div class="panel">
+      <div class="panel" tabindex="0" role="button" aria-haspopup="dialog" data-modal-target="modal-micromagnetics">
         <img src="assets/figure-micromagnetics.svg" alt="Placeholder figure: micromagnetic simulation mesh">
         <div class="shade"></div>
         <div class="cap">
@@ -36,7 +35,7 @@
           <p>I build 3D finite-element simulations to predict how magnetic minerals record and retain their magnetic signal over time.</p>
         </div>
       </div>
-      <div class="panel">
+      <div class="panel" tabindex="0" role="button" aria-haspopup="dialog" data-modal-target="modal-ml">
         <img src="assets/figure-ml.svg" alt="Placeholder figure: machine learning network">
         <div class="shade"></div>
         <div class="cap">
@@ -44,7 +43,7 @@
           <p>I combine simulation data with machine learning models to connect microscopic mineral structure to laboratory measurements.</p>
         </div>
       </div>
-      <div class="panel">
+      <div class="panel" tabindex="0" role="button" aria-haspopup="dialog" data-modal-target="modal-meteorite">
         <img src="assets/figure-meteorite.svg" alt="Placeholder figure: meteorite sample">
         <div class="shade"></div>
         <div class="cap">
@@ -82,14 +81,64 @@
   </section>
 
   <footer>
-    <div>&copy; 2026 José Devienne</div>
+    <div>José Devienne</div>
     <div class="foot-links">
-      <a href="assets/cv.pdf" target="_blank">CV (PDF)</a>
-      <a href="https://scholar.google.com/citations?user=Jmeok9IAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="about.html">About</a>
+      <a href="research.html">Research</a>
+      <a href="mlops.html">MLOps</a>
+      <a href="cv.html">CV</a>
       <a href="contact.html">Contact</a>
     </div>
   </footer>
 
+  <!-- Modal content templates — one per clickable panel above.
+       Placeholder text/figures for now; edit freely, the modal just
+       clones whichever <template> matches the clicked panel's
+       data-modal-target. -->
+  <template id="modal-micromagnetics">
+    <h3>Micromagnetic modeling</h3>
+    <p>Placeholder text — expand with more detail on this research theme: methods, key results, and why it matters.</p>
+    <p>Placeholder text — add a second paragraph if needed.</p>
+    <div class="modal-figures">
+      <img src="assets/figure-micromagnetics.svg" alt="Placeholder figure">
+      <img src="assets/figure-micromagnetics.svg" alt="Placeholder figure">
+    </div>
+  </template>
+
+  <template id="modal-ml">
+    <h3>Machine learning</h3>
+    <p>Placeholder text — expand with more detail on this research theme: methods, key results, and why it matters.</p>
+    <p>Placeholder text — add a second paragraph if needed.</p>
+    <div class="modal-figures">
+      <img src="assets/figure-ml.svg" alt="Placeholder figure">
+      <img src="assets/figure-ml.svg" alt="Placeholder figure">
+    </div>
+  </template>
+
+  <template id="modal-meteorite">
+    <h3>Meteorites &amp; the origin of life</h3>
+    <p>Placeholder text — expand with more detail on this research theme: methods, key results, and why it matters.</p>
+    <p>Placeholder text — add a second paragraph if needed.</p>
+    <div class="modal-figures">
+      <img src="assets/figure-meteorite.svg" alt="Placeholder figure">
+      <img src="assets/figure-meteorite.svg" alt="Placeholder figure">
+    </div>
+  </template>
+
+  <div class="modal-overlay" id="modal-overlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modal-close" type="button" aria-label="Close">&times;</button>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Lightbox: click any figure inside the modal to view it larger -->
+  <div class="lightbox-overlay" id="lightbox-overlay" hidden>
+    <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close">&times;</button>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
 </div>
+<script src="script.js"></script>
 </body>
 </html>

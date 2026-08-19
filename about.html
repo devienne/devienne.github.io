@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — José Devienne</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <a class="brand" href="index.html">J. Devienne</a>
+    <div class="tabs">
+      <a class="active" href="about.html">About</a>
+      <a href="research.html">Research</a>
+      <a href="mlops.html">MLOps</a>
+      <a href="cv.html">CV</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <section class="bio">
+    <div class="label">ABOUT</div>
+    <div>
+      <p class="lede">
+        I am a scientist with a PhD in Geophysics and 8+ years of experience in computational
+        modeling, data analysis, and scientific programming. My background combines strong
+        quantitative research with hands-on work in Python, machine learning, automation, and
+        scalable data workflows.
+      </p>
+      <p class="lede">
+        Throughout my career, I have developed computational pipelines to process complex datasets,
+        automate simulations, and investigate physical systems using finite-element modeling and
+        data-driven methods. I have also applied machine learning to real-world problems such as
+        landslide classification and earthquake prediction.
+      </p>
+      <p class="lede">
+        I also hold an MSc in Applied Physics and a BSc in Physics. I've recently completed a
+        postgraduate course in ML Engineering, where I've been involved in a number of exciting
+        real-world projects ranging from housing-price analysis, recommendation systems, and
+        forecasting. During this course, a strong emphasis was given on the development of APIs for
+        data extraction and transformation, as well as on deployment of ML models.
+      </p>
+
+      <!-- Timeline — decorative curve drawn in SVG, with three clickable
+           milestone points overlaid as buttons (kept in sync with the
+           .timeline-point-N positions in style.css). Placeholder text/
+           dates/content for now; edit freely, same modal pattern as the
+           Research page. -->
+      <div class="timeline">
+        <svg class="timeline-curve" viewBox="0 0 900 220" preserveAspectRatio="none" aria-hidden="true">
+          <path class="curve" d="M20,110 C70,70 110,70 150,70 C250,70 350,130 450,130 C550,130 650,70 750,70 C800,70 850,110 880,110" />
+          <line class="stem" x1="150" y1="70" x2="150" y2="35" />
+          <line class="stem" x1="450" y1="130" x2="450" y2="170" />
+          <line class="stem" x1="750" y1="70" x2="750" y2="35" />
+          <circle class="marker" cx="150" cy="70" r="5" />
+          <circle class="marker" cx="450" cy="130" r="5" />
+          <circle class="marker" cx="750" cy="70" r="5" />
+        </svg>
+        <button type="button" class="timeline-point timeline-point-1" data-modal-target="modal-timeline-1">2016 — Placeholder milestone</button>
+        <button type="button" class="timeline-point timeline-point-2" data-modal-target="modal-timeline-2">2020 — Placeholder milestone</button>
+        <button type="button" class="timeline-point timeline-point-3" data-modal-target="modal-timeline-3">2024 — Placeholder milestone</button>
+      </div>
+
+      <div class="history">
+        <div class="hist-group">
+          <div class="k">EDUCATION</div>
+          <ul class="hist-list">
+            <li>
+              <div class="role">MBA in ML Engineering</div>
+              <div class="sub"><a href="https://www.fiap.com.br/" target="_blank" rel="noopener">FIAP</a></div>
+            </li>
+            <li>
+              <div class="role">ML Academy</div>
+              <div class="sub"><a href="https://www.cambridgespark.com/" target="_blank" rel="noopener">Cambridge Spark</a></div>
+            </li>
+            <li>
+              <div class="role">PhD in Geophysics</div>
+              <div class="sub"><a href="https://sess2.pku.edu.cn/english/index.htm" target="_blank" rel="noopener">Peking University</a></div>
+            </li>
+            <li>
+              <div class="role">MSc in Applied Physics</div>
+              <div class="sub"><a href="https://www2.unesp.br/" target="_blank" rel="noopener">São Paulo State University (UNESP)</a></div>
+            </li>
+            <li>
+              <div class="role">BSc in Physics</div>
+              <div class="sub"><a href="https://www2.unesp.br/" target="_blank" rel="noopener">São Paulo State University (UNESP)</a></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>José Devienne</div>
+    <div class="foot-links">
+      <a href="about.html">About</a>
+      <a href="research.html">Research</a>
+      <a href="mlops.html">MLOps</a>
+      <a href="cv.html">CV</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+
+  <!-- Modal content templates — one per timeline point above.
+       Placeholder text/figure for now; edit freely, the modal just
+       clones whichever <template> matches the clicked point's
+       data-modal-target. -->
+  <template id="modal-timeline-1">
+    <h3>2016 — Placeholder milestone</h3>
+    <p>Placeholder text — expand with more detail on this milestone.</p>
+    <div class="modal-figures">
+      <img src="assets/figure-update-placeholder.svg" alt="Placeholder figure">
+    </div>
+  </template>
+
+  <template id="modal-timeline-2">
+    <h3>2020 — Placeholder milestone</h3>
+    <p>Placeholder text — expand with more detail on this milestone.</p>
+    <div class="modal-figures">
+      <img src="assets/figure-update-placeholder.svg" alt="Placeholder figure">
+    </div>
+  </template>
+
+  <template id="modal-timeline-3">
+    <h3>2024 — Placeholder milestone</h3>
+    <p>Placeholder text — expand with more detail on this milestone.</p>
+    <div class="modal-figures">
+      <img src="assets/figure-update-placeholder.svg" alt="Placeholder figure">
+    </div>
+  </template>
+
+  <div class="modal-overlay" id="modal-overlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modal-close" type="button" aria-label="Close">&times;</button>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Lightbox: click any figure inside the modal to view it larger -->
+  <div class="lightbox-overlay" id="lightbox-overlay" hidden>
+    <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close">&times;</button>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
