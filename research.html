@@ -28,7 +28,7 @@
          <template> below. Placeholder content for now; swap in real text/figures later. -->
     <div class="panels">
       <div class="panel" tabindex="0" role="button" aria-haspopup="dialog" data-modal-target="modal-meteorite">
-        <img src="assets/prebiotic.jpg" alt="Placeholder figure: meteorite sample">
+        <img src="assets/research/prebiotic.jpg" alt="Placeholder figure: meteorite sample">
         <div class="shade"></div>
         <div class="cap">  
           <h3>Magnetism &amp; the origin of life</h3>
@@ -37,7 +37,7 @@
       </div>
 
       <div class="panel" tabindex="0" role="button" aria-haspopup="dialog" data-modal-target="modal-micromagnetics">
-        <img src="assets/meteorites4.jpg" alt="Placeholder figure: micromagnetic simulation mesh">
+        <img src="assets/research/meteorites4.jpg" alt="Placeholder figure: micromagnetic simulation mesh">
         <div class="shade"></div>
         <div class="cap">
           <h3>Meteorites magnetism</h3>
@@ -46,7 +46,7 @@
       </div>
 
       <div class="panel" tabindex="0" role="button" aria-haspopup="dialog" data-modal-target="modal-micromagnetics">
-        <img src="assets/qdm.png" alt="Placeholder figure: micromagnetic simulation mesh">
+        <img src="assets/research/qdm.png" alt="Placeholder figure: micromagnetic simulation mesh">
         <div class="shade"></div>
         <div class="cap">
           <h3>Detecting mineral magnetism</h3>
@@ -55,7 +55,7 @@
       </div>
 
       <div class="panel" tabindex="0" role="button" aria-haspopup="dialog" data-modal-target="modal-micromagnetics">
-        <img src="assets/tem.png" alt="Placeholder figure: micromagnetic simulation mesh">
+        <img src="assets/research/tem.png" alt="Placeholder figure: micromagnetic simulation mesh">
         <div class="shade"></div>
         <div class="cap">
           <h3>Imaging magnetic minerals</h3>
@@ -64,7 +64,7 @@
       </div>
 
       <div class="panel" tabindex="0" role="button" aria-haspopup="dialog" data-modal-target="modal-micromagnetics">
-        <img src="assets/micromagnetic.png" alt="Placeholder figure: micromagnetic simulation mesh">
+        <img src="assets/research/micromagnetic.png" alt="Placeholder figure: micromagnetic simulation mesh">
         <div class="shade"></div>
         <div class="cap">
           <h3>Micromagnetic modeling</h3>
@@ -75,7 +75,7 @@
 
 
       <div class="panel" tabindex="0" role="button" aria-haspopup="dialog" data-modal-target="modal-ml">
-        <img src="assets/clustering.png" alt="Placeholder figure: machine learning network">
+        <img src="assets/research/clustering.png" alt="Placeholder figure: machine learning network">
         <div class="shade"></div>
         <div class="cap">
           <h3>Machine learning</h3>
@@ -132,8 +132,8 @@
     <p>Placeholder text — expand with more detail on this research theme: methods, key results, and why it matters.</p>
     <p>Placeholder text — add a second paragraph if needed.</p>
     <div class="modal-figures">
-      <img src="assets/figure-micromagnetics.svg" alt="Placeholder figure">
-      <img src="assets/figure-micromagnetics.svg" alt="Placeholder figure">
+      <img src="assets/figures/micromagnetics.svg" alt="Placeholder figure">
+      <img src="assets/figures/micromagnetics.svg" alt="Placeholder figure">
     </div>
   </template>
 
@@ -142,8 +142,8 @@
     <p>Placeholder text — expand with more detail on this research theme: methods, key results, and why it matters.</p>
     <p>Placeholder text — add a second paragraph if needed.</p>
     <div class="modal-figures">
-      <img src="assets/figure-ml.svg" alt="Placeholder figure">
-      <img src="assets/figure-ml.svg" alt="Placeholder figure">
+      <img src="assets/figures/ml.svg" alt="Placeholder figure">
+      <img src="assets/figures/ml.svg" alt="Placeholder figure">
     </div>
   </template>
 
@@ -152,8 +152,8 @@
     <p>Placeholder text — expand with more detail on this research theme: methods, key results, and why it matters.</p>
     <p>Placeholder text — add a second paragraph if needed.</p>
     <div class="modal-figures">
-      <img src="assets/figure-meteorite.svg" alt="Placeholder figure">
-      <img src="assets/figure-meteorite.svg" alt="Placeholder figure">
+      <img src="assets/figures/meteorite.svg" alt="Placeholder figure">
+      <img src="assets/figures/meteorite.svg" alt="Placeholder figure">
     </div>
   </template>
 
@@ -167,7 +167,9 @@
   <!-- Lightbox: click any figure inside the modal to view it larger -->
   <div class="lightbox-overlay" id="lightbox-overlay" hidden>
     <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev" type="button" aria-label="Previous figure">&lsaquo;</button>
     <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-nav lightbox-next" id="lightbox-next" type="button" aria-label="Next figure">&rsaquo;</button>
   </div>
 
 </div>

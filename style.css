@@ -541,6 +541,24 @@ footer a:hover { color: var(--accent-soft); }
   gap: 16px;
   margin-top: 24px;
 }
+/* Smaller variant — figures cap out at 200px instead of stretching to
+   fill the row, and stay centered whether there's one image or several. */
+.modal-figures--sm {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 200px));
+  justify-content: center;
+}
+/* Standard grid for every update's figures — 3 columns (wraps to 2 rows
+   for up to 6 photos), used regardless of how many images a post has.
+   Every cell is the same size no matter the photo's native aspect ratio,
+   via a fixed aspect-ratio + object-fit: cover on the images. */
+.modal-figures--grid3 { grid-template-columns: repeat(3, 1fr); }
+.modal-figures--grid3 img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+@media (max-width: 640px) {
+  .modal-figures--grid3 { grid-template-columns: repeat(2, 1fr); }
+}
 .modal-figures img {
   width: 100%;
   height: auto;
@@ -592,3 +610,28 @@ footer a:hover { color: var(--accent-soft); }
   transition: border-color 0.15s, color 0.15s;
 }
 .lightbox-close:hover { border-color: var(--accent); color: var(--accent-soft); }
+
+/* Prev/next — step through the other figures in the same .modal-figures
+   group. Hidden by script.js when a group only has one image. */
+.lightbox-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--line-pill);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.lightbox-nav:hover { border-color: var(--accent); color: var(--accent-soft); }
+.lightbox-nav[hidden] { display: none; }
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
