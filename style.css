@@ -306,7 +306,7 @@ nav {
 .panel .shade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(7,11,20,0.15) 0%, rgba(7,11,20,0) 35%, rgba(7,11,20,0.92) 100%);
+  background: linear-gradient(180deg, rgba(7,11,20,0.3) 0%, rgba(7,11,20,0.1) 25%, rgba(7,11,20,1) 100%);
 }
 .panel .cap {
   position: absolute;
@@ -387,6 +387,34 @@ nav {
 @media (max-width: 767px) {
   .cards { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   Publications page
+   ============================================================ */
+.pubs { padding: 64px var(--pad) 96px; }
+/* Two .pubs sections stack directly on the Publications page (main list,
+   then Conference & Symposium Abstracts) — tighten the gap between them. */
+.pubs:has(+ .pubs) { padding-bottom: 24px; }
+.pubs + .pubs { padding-top: 24px; }
+.pubs > .label { display: block; margin-bottom: 32px; }
+.pub-group { margin-bottom: 48px; }
+.pub-group:last-child { margin-bottom: 0; }
+.pub-group .k {
+  display: block;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--ink-dim);
+  margin-bottom: 16px;
+}
+.pub-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+.pub-list li { font-size: 15px; line-height: 1.7; color: var(--ink-soft); }
+.pub-list li strong { color: var(--ink); font-weight: 600; }
+.pub-list .venue { font-style: italic; }
+.pub-list a { color: var(--accent); text-decoration: none; }
+.pub-list a:hover { color: var(--accent-soft); }
+.pub-list li.placeholder { color: var(--ink-dim); font-style: italic; }
+.pub-list li.placeholder strong { color: var(--ink-dim); }
 
 /* ============================================================
    CV page
