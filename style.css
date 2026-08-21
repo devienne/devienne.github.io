@@ -113,8 +113,8 @@ nav {
 
 /* Inline links inside intro-style paragraphs read as plain text —
    no color change, no underline — but stay clickable. */
-.lede a { color: inherit; text-decoration: none; }
-.lede a:hover { color: inherit; }
+.lede a { color: var(--accent); text-decoration: none; }
+.lede a:hover { color: var(--accent-soft); }
 
 /* "What's going on" — clickable dated updates, each opening the
    shared modal (same component the Research panels use). */
@@ -456,6 +456,29 @@ nav {
 }
 .pill:hover { border-color: var(--accent); color: var(--accent-soft); }
 
+/* Address + map — Contact page only. "ADDRESS" and "CONTACT" are both
+   .contact .label kickers, ADDRESS first, CONTACT (with the pills) below. */
+.contact address {
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+.map-embed {
+  margin-top: 24px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line-card);
+}
+.map-embed iframe {
+  display: block;
+  width: 100%;
+  height: 320px;
+  border: 0;
+}
+.map-embed + .label { margin-top: 56px; }
+
 /* ============================================================
    Footer
    ============================================================ */
@@ -635,3 +658,32 @@ footer a:hover { color: var(--accent-soft); }
 .lightbox-nav[hidden] { display: none; }
 .lightbox-prev { left: 20px; }
 .lightbox-next { right: 20px; }
+
+/* Modal prev/next — step between updates, in the same order as the
+   #modal-all-updates archive list. script.js hides these when the open
+   template isn't part of that sequence (e.g. the archive list itself). */
+.modal-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--line-pill);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  /* .modal-overlay has z-index: 100 and lives in the DOM after these
+     buttons — without this they'd render behind its dark backdrop. */
+  z-index: 110;
+}
+.modal-nav:hover { border-color: var(--accent); color: var(--accent-soft); }
+.modal-nav[hidden] { display: none; }
+.modal-prev { left: 20px; }
+.modal-next { right: 20px; }
